@@ -8,11 +8,11 @@ class Account
     @balance = OPENING_BALANCE
   end
 
-  def deposit(ammount)
+  def deposit(amount)
     @balance += ammount
   end
 
-  def withdraw(ammount)
-    @balance -= ammount if @balance >= ammount
+  def withdraw(amount)
+    @balance -= amount if @balance >= amount
   end
 end
