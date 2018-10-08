@@ -21,9 +21,7 @@ class Account
     end
   end
 
-  # def statement
-  #   return @statement
-  # end
+  private
 
   def create_record(type, amount)
     @statement.push({amount: amount,
