@@ -22,4 +22,11 @@ describe "Account" do
       expect(@new_account.balance).to eq(500)
     end
   end
+
+  describe "#withdraw" do
+    it "can be subtracted from #balance" do
+      @new_account.withdraw(500)
+      expect(@new_account.balance).to eq(-500)
+    end
+  end
 end
