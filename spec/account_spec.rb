@@ -1,6 +1,6 @@
 require 'account'
 
-describe "Account" do
+describe ".Account" do
 
   before(:each) do
     @new_account = Account.new
@@ -24,10 +24,10 @@ describe "Account" do
 
     it "records the date of the deposit" do
       @new_account.deposit(500)
-      expect(@new_account.statement).to eq([{date: "01/01/2019"},
-                                            {type: "deposit"},
-                                            {amount: 500},
-                                            {current_balance: 500}])
+      expect(@new_account.statement).to eq([{amount: 500,
+                                             balance: 500,
+                                             date: "01/01/2019",
+                                             type: "deposit"}])
     end
   end
 
@@ -45,6 +45,14 @@ describe "Account" do
     it "stop a withdrawal if amount is more than balance" do
       @new_account.withdraw(1000)
       expect(@new_account.balance).to eq(500)
+    end
+
+    it "records the date of the withdraw" do
+      @new_account.withdraw(250)
+      expect(@new_account.statement).to include({amount: -250,
+                                                 balance: 250,
+                                                 date: "01/01/2019",
+                                                 type: "withdraw"})
     end
   end
 end
