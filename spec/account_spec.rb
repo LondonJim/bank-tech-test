@@ -10,4 +10,7 @@ describe "Account" do
     expect(@new_account).to be_instance_of(Account)
   end
 
+  it "is instantiated with a balance of 0" do
+    expect(@new_account.balance).to eq(0)
+  end
 end
