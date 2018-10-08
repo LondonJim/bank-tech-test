@@ -2,7 +2,7 @@ class Account
 
   OPENING_BALANCE = 0
 
-  attr_reader :balance
+  attr_reader :balance, :statement
 
   def initialize
     @balance = OPENING_BALANCE
@@ -21,9 +21,9 @@ class Account
     end
   end
 
-  def statement
-    return @statement
-  end
+  # def statement
+  #   return @statement
+  # end
 
   def create_record(type, amount)
     @statement.push({amount: amount,
