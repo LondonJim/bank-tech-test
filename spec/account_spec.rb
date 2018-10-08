@@ -24,9 +24,19 @@ describe "Account" do
   end
 
   describe "#withdraw" do
+
+    before(:each) do
+      @new_account.deposit(500)
+    end
+
     it "can be subtracted from #balance" do
-      @new_account.withdraw(500)
-      expect(@new_account.balance).to eq(-500)
+      @new_account.withdraw(250)
+      expect(@new_account.balance).to eq(250)
+    end
+
+    it "stop a withdrawal if ammount is more than balance" do
+      @new_account.withdraw(1000)
+      expect(@new_account.balance).to eq(500)
     end
   end
 end
