@@ -26,8 +26,11 @@ class Account
   def create_record(type, amount)
     @statement.push({amount: amount,
                      balance: @balance,
-                     date: "01/01/2019",
+                     date: create_date,
                      type: type})
+  end
 
+  def create_date
+    Time.new.strftime("%d/%m/%Y")
   end
 end

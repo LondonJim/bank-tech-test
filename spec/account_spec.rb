@@ -4,6 +4,7 @@ describe ".Account" do
 
   before(:each) do
     @new_account = Account.new
+    allow(@new_account).to receive(:create_date).and_return("01/01/2019")
   end
 
   it "can be created" do
