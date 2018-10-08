@@ -21,6 +21,14 @@ describe "Account" do
       @new_account.deposit(500)
       expect(@new_account.balance).to eq(500)
     end
+
+    it "records the date of the deposit" do
+      @new_account.deposit(500)
+      expect(@new_account.statement).to eq([{date: "01/01/2019"},
+                                            {type: "deposit"},
+                                            {amount: 500},
+                                            {current_balance: 500}])
+    end
   end
 
   describe "#withdraw" do
