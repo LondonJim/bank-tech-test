@@ -26,4 +26,5 @@ class Transactions
   def create_date
     Time.new.strftime("%d/%m/%Y")
   end
+  
 end

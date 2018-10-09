@@ -1,7 +1,7 @@
 class Statement
 
   def initialize
-    @statement = ""
+    @statement = String.new
   end
 
   def header

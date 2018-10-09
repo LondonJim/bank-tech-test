@@ -7,8 +7,6 @@ describe ".Transactions" do
     @transactions = Transactions.new(statement)
     allow(@transactions).to receive(:create_date).and_return("01/01/2019")
     allow(statement).to receive(:printer) { |records| records }
-
-
   end
 
   it "can be created" do
@@ -39,4 +37,5 @@ describe ".Transactions" do
                                             type: "debit"}])
     end
   end
+  
 end
