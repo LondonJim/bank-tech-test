@@ -1,14 +1,7 @@
 class Statement
 
-  def initialize
-    @statement = String.new
-  end
-
-  def header
-    "date || credit || debit || balance\n"
-  end
-
   def printer(records)
+    @statement = String.new
     @statement << header
     records.each do |record|
       @statement += "#{convert_date(record[:date])} "
@@ -16,10 +9,13 @@ class Statement
       @statement += " || #{two_decimals(record[:balance])}\n"
     end
     puts @statement
-    reset_statement
   end
 
   private
+
+  def header
+    "date || credit || debit || balance\n"
+  end
 
   def convert_date(date)
     date.strftime("%d/%m/%Y")
@@ -35,10 +31,6 @@ class Statement
 
   def two_decimals(input)
     '%.2f' % input
-  end
-
-  def reset_statement
-    @statement = ""
   end
 
 end
