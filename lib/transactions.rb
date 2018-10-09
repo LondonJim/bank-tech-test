@@ -10,19 +10,13 @@ class Transactions
   def record(amount, balance, type)
     @records.push({ amount: amount,
                     balance: balance,
-                    date: create_date,
+                    date: Time.new,
                     type: type })
     @records[-1]
   end
 
   def display
     @statement.printer(@records)
-  end
-
-  private
-
-  def create_date
-    Time.new.strftime("%d/%m/%Y")
   end
 
 end

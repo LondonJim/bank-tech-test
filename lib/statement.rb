@@ -11,7 +11,7 @@ class Statement
   def printer(records)
     @statement << header
     records.each do |record|
-      @statement += "#{record[:date]} "
+      @statement += "#{convert_date(record[:date])} "
       transaction_check(record)
       @statement += " || #{two_decimals(record[:balance])}\n"
     end
@@ -20,6 +20,10 @@ class Statement
   end
 
   private
+
+  def convert_date(date)
+    date.strftime("%d/%m/%Y")
+  end
 
   def transaction_check(record)
     if record[:type] == :credit

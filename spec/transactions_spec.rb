@@ -5,7 +5,8 @@ describe ".Transactions" do
   before(:each) do
     statement = double("Statement")
     @transactions = Transactions.new(statement)
-    allow(@transactions).to receive(:create_date).and_return("01/01/2019")
+    @check_date = Time.new(2019, 01, 01, 12, 0, 0, "+00:00")
+    allow(Time).to receive(:new).and_return(@check_date)
     allow(statement).to receive(:printer) { |records| records }
   end
 
@@ -24,7 +25,7 @@ describe ".Transactions" do
       expect(@transactions.instance_variable_get(:@records))
         .to eq([{amount: 500,
                  balance: 500,
-                 date: "01/01/2019",
+                 date: @check_date,
                  type: "debit"}])
     end
   end
@@ -34,7 +35,7 @@ describe ".Transactions" do
       @transactions.record(500, 500, "debit")
       expect(@transactions.display).to eq([{amount: 500,
                                             balance: 500,
-                                            date: "01/01/2019",
+                                            date: @check_date,
                                             type: "debit"}])
     end
   end
