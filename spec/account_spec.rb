@@ -5,7 +5,10 @@ describe ".Account" do
   before(:each) do
     transactions = double("Transactions")
     @new_account = Account.new(transactions)
-    allow(transactions).to receive(:display).and_return("statement display")
+
+    allow(transactions).to receive(:display)
+      .and_return("statement display")
+
     allow(transactions).to receive(:record) do |amount, balance, type|
       {amount: amount, balance: balance, date: "01/01/2019", type: type}
     end
@@ -61,7 +64,8 @@ describe ".Account" do
 
   describe "#display_statement" do
     it "returns 'statement display'" do
-      expect(@new_account.display_statement).to eq('statement display')
+      expect(@new_account.display_statement)
+        .to eq('statement display')
     end
   end
 

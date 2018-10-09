@@ -6,7 +6,7 @@ describe ".Transactions" do
     statement = double("Statement")
     @transactions = Transactions.new(statement)
     allow(@transactions).to receive(:create_date).and_return("01/01/2019")
-    allow(statement).to receive(:trans_display) { |records| records }
+    allow(statement).to receive(:printer) { |records| records }
 
 
   end
@@ -31,7 +31,7 @@ describe ".Transactions" do
   end
 
   describe "#display" do
-    it "can send records to .Statement.trans_display" do
+    it "can send records to .Statement.printer" do
       @transactions.record(500, 500, "debit")
       expect(@transactions.display).to eq([{amount: 500,
                                             balance: 500,

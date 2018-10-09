@@ -18,7 +18,7 @@ class Transactions
   end
 
   def display
-    @statement.trans_display(@records)
+    @statement.printer(@records)
   end
 
   private
