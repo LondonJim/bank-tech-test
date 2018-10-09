@@ -17,10 +17,9 @@ class Account
   end
 
   def withdraw(amount)
-    if @balance >= amount
-      @balance -= amount
-      create_record("debit", -amount)
-    end
+    raise "Insufficient Funds" if @balance <= amount
+    @balance -= amount
+    create_record("debit", -amount)
   end
 
   def display_statement

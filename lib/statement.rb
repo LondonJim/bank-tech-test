@@ -12,11 +12,7 @@ class Statement
     @statement << header
     records.each do |record|
       @statement += "#{record[:date]} "
-      if record[:type] == "credit"
-        @statement += "|| #{two_decimals(record[:amount])} ||"
-      else
-        @statement += "|| || #{two_decimals(record[:amount])}"
-      end
+      transaction_check(record)
       @statement += " || #{two_decimals(record[:balance])}\n"
     end
     puts @statement
@@ -24,6 +20,14 @@ class Statement
   end
 
   private
+
+  def transaction_check(record)
+    if record[:type] == "credit"
+      @statement += "|| #{two_decimals(record[:amount])} ||"
+    else
+      @statement += "|| || #{two_decimals(record[:amount])}"
+    end
+  end
 
   def two_decimals(input)
     '%.2f' % input

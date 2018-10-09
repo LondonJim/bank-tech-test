@@ -50,8 +50,7 @@ describe ".Account" do
     end
 
     it "stop a withdrawal if amount is more than balance" do
-      @new_account.withdraw(1000)
-      expect(@new_account.balance).to eq(500)
+      expect{@new_account.withdraw(1000)}.to raise_error("Insufficient Funds")
     end
 
     it "records the date of the withdraw" do

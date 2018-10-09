@@ -10,10 +10,10 @@ class Transactions
   end
 
   def record(amount, balance, type)
-    @records.push({amount: amount,
-                   balance: balance,
-                   date: create_date,
-                   type: type})
+    @records.push({ amount: amount,
+                    balance: balance,
+                    date: create_date,
+                    type: type })
     @records[-1]
   end
 
