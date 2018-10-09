@@ -5,9 +5,9 @@ describe ".DisplayStatement" do
   before(:each) do
     @statement = Statement.new
     check_date = Time.new(2019, 01, 01, 12, 0, 0, "+00:00")
-    @records = [{amount: 500, balance: 500, date: check_date, type: :debit},
+    @records = [{amount: -500, balance: 500, date: check_date, type: :debit},
                 {amount: 250, balance: 750, date: check_date, type: :credit},
-                {amount: 300, balance: 450, date: check_date, type: :debit}]
+                {amount: -300, balance: 450, date: check_date, type: :debit}]
   end
 
   it "can be created" do

@@ -26,7 +26,7 @@ class Statement
   end
 
   def transaction_check(record)
-    if record[:type] == :credit
+    if record[:amount].positive?
       @statement += "|| #{two_decimals(record[:amount])} ||"
     else
       @statement += "|| || #{two_decimals(record[:amount].abs)}"
