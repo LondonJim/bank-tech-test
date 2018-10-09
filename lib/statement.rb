@@ -22,7 +22,7 @@ class Statement
   private
 
   def transaction_check(record)
-    if record[:type] == "credit"
+    if record[:type] == :credit
       @statement += "|| #{two_decimals(record[:amount])} ||"
     else
       @statement += "|| || #{two_decimals(record[:amount].abs)}"

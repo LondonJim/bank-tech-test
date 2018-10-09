@@ -14,17 +14,18 @@ describe ".Transactions" do
   end
 
   it "is instantiated with empty #records array" do
-    expect(@transactions.records).to eq([])
+    expect(@transactions.instance_variable_get(:@records)).to eq([])
   end
 
   describe "#record" do
 
     it "can create an element containing transaction details" do
       @transactions.record(500, 500, "debit")
-      expect(@transactions.records).to eq([{amount: 500,
-                                           balance: 500,
-                                           date: "01/01/2019",
-                                           type: "debit"}])
+      expect(@transactions.instance_variable_get(:@records))
+        .to eq([{amount: 500,
+                 balance: 500,
+                 date: "01/01/2019",
+                 type: "debit"}])
     end
   end
 
@@ -37,5 +38,5 @@ describe ".Transactions" do
                                             type: "debit"}])
     end
   end
-  
+
 end

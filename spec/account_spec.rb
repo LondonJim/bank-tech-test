@@ -34,7 +34,7 @@ describe ".Account" do
       expect(@new_account.deposit(500)).to eq({amount: 500,
                                                balance: 500,
                                                date: "01/01/2019",
-                                               type: "credit"})
+                                               type: :credit})
     end
   end
 
@@ -57,7 +57,7 @@ describe ".Account" do
       expect(@new_account.withdraw(250)).to eq({amount: -250,
                                                 balance: 250,
                                                 date: "01/01/2019",
-                                                type: "debit"})
+                                                type: :debit})
     end
   end
 

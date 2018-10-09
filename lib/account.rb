@@ -13,13 +13,13 @@ class Account
 
   def deposit(amount)
     @balance += amount
-    create_record("credit", amount)
+    create_record(:credit, amount)
   end
 
   def withdraw(amount)
     raise "Insufficient Funds" if @balance <= amount
     @balance -= amount
-    create_record("debit", -amount)
+    create_record(:debit, -amount)
   end
 
   def display_statement

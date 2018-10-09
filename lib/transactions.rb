@@ -2,8 +2,6 @@ require_relative './statement'
 
 class Transactions
 
-  attr_accessor :records
-
   def initialize(statement = Statement.new)
     @statement = statement
     @records = []

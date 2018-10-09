@@ -4,9 +4,9 @@ describe ".DisplayStatement" do
 
   before(:each) do
     @statement = Statement.new
-    @records = [{amount: 500, balance: 500, date: "01/01/2019", type: "debit"},
-                {amount: 250, balance: 750, date: "02/01/2019", type: "credit"},
-                {amount: 300, balance: 450, date: "03/01/2019", type: "debit"}]
+    @records = [{amount: 500, balance: 500, date: "01/01/2019", type: :debit},
+                {amount: 250, balance: 750, date: "02/01/2019", type: :credit},
+                {amount: 300, balance: 450, date: "03/01/2019", type: :debit}]
   end
 
   it "can be created" do
