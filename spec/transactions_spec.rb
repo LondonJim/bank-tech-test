@@ -3,8 +3,12 @@ require 'transactions'
 describe ".Transactions" do
 
   before(:each) do
-    @transactions = Transactions.new
+    statement = double("Statement")
+    @transactions = Transactions.new(statement)
     allow(@transactions).to receive(:create_date).and_return("01/01/2019")
+    allow(statement).to receive(:trans_display) { |records| records }
+
+
   end
 
   it "can be created" do
@@ -26,4 +30,13 @@ describe ".Transactions" do
     end
   end
 
+  describe "#display" do
+    it "can send records to .Statement.trans_display" do
+      @transactions.record(500, 500, "debit")
+      expect(@transactions.display).to eq([{amount: 500,
+                                            balance: 500,
+                                            date: "01/01/2019",
+                                            type: "debit"}])
+    end
+  end
 end

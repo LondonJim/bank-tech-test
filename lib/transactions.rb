@@ -1,8 +1,11 @@
+require_relative './statement'
+
 class Transactions
 
   attr_accessor :records
 
-  def initialize
+  def initialize(statement = Statement.new)
+    @statement = statement
     @records = []
   end
 
@@ -12,6 +15,10 @@ class Transactions
                    date: create_date,
                    type: type})
     @records[-1]
+  end
+
+  def display
+    @statement.trans_display(@records)
   end
 
   private

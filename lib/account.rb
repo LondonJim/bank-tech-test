@@ -23,6 +23,10 @@ class Account
     end
   end
 
+  def display_statement
+    @transactions.display
+  end
+
   private
 
   def create_record(type, amount)
