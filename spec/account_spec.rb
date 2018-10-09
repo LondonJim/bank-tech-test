@@ -2,9 +2,14 @@ require 'account'
 
 describe ".Account" do
 
+
+
   before(:each) do
-    @new_account = Account.new
-    allow(@new_account).to receive(:create_date).and_return("01/01/2019")
+    transactions = double("Transactions")
+    @new_account = Account.new(transactions)
+    allow(transactions).to receive(:record) do |amount, balance, type|
+      {amount: amount, balance: balance, date: "01/01/2019", type: type}
+    end
   end
 
   it "can be created" do
@@ -24,11 +29,10 @@ describe ".Account" do
     end
 
     it "records the date of the deposit" do
-      @new_account.deposit(500)
-      expect(@new_account.statement).to eq([{amount: 500,
-                                             balance: 500,
-                                             date: "01/01/2019",
-                                             type: "deposit"}])
+      expect(@new_account.deposit(500)).to eq({amount: 500,
+                                               balance: 500,
+                                               date: "01/01/2019",
+                                               type: "credit"})
     end
   end
 
@@ -49,11 +53,10 @@ describe ".Account" do
     end
 
     it "records the date of the withdraw" do
-      @new_account.withdraw(250)
-      expect(@new_account.statement).to include({amount: -250,
-                                                 balance: 250,
-                                                 date: "01/01/2019",
-                                                 type: "withdraw"})
+      expect(@new_account.withdraw(250)).to eq({amount: -250,
+                                                balance: 250,
+                                                date: "01/01/2019",
+                                                type: "debit"})
     end
   end
 end

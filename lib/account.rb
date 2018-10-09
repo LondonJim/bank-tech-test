@@ -1,36 +1,32 @@
+require_relative 'transactions'
+
 class Account
 
   OPENING_BALANCE = 0
 
-  attr_reader :balance, :statement
+  attr_reader :balance
 
-  def initialize
+  def initialize(transactions = Transactions.new)
+    @transactions = transactions
     @balance = OPENING_BALANCE
-    @statement = []
   end
 
   def deposit(amount)
     @balance += amount
-    create_record("deposit", amount)
+    create_record("credit", amount)
   end
 
   def withdraw(amount)
     if @balance >= amount
       @balance -= amount
-      create_record("withdraw", -amount)
+      create_record("debit", -amount)
     end
   end
 
   private
 
   def create_record(type, amount)
-    @statement.push({amount: amount,
-                     balance: @balance,
-                     date: create_date,
-                     type: type})
+    @transactions.record(amount, @balance, type)
   end
 
-  def create_date
-    Time.new.strftime("%d/%m/%Y")
-  end
 end
