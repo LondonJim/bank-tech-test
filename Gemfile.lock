@@ -28,6 +28,7 @@ GEM
       hirb
       simplecov
     simplecov-html (0.10.2)
+    timecop (0.9.1)
     unicode-display_width (1.4.0)
 
 PLATFORMS
@@ -37,6 +38,7 @@ DEPENDENCIES
   rubocop (= 0.56.0)
   simplecov
   simplecov-console
+  timecop
 
 RUBY VERSION
    ruby 2.5.1p57

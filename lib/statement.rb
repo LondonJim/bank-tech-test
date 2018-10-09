@@ -25,7 +25,7 @@ class Statement
     if record[:type] == "credit"
       @statement += "|| #{two_decimals(record[:amount])} ||"
     else
-      @statement += "|| || #{two_decimals(record[:amount])}"
+      @statement += "|| || #{two_decimals(record[:amount].abs)}"
     end
   end
 
