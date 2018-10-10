@@ -1,6 +1,6 @@
-class Statement
+module Statement
 
-  def printer(records)
+  def self.printer(records)
     @statement = String.new
     @statement << header
     records.each do |record|
@@ -13,15 +13,15 @@ class Statement
 
   private
 
-  def header
+  def self.header
     "date || credit || debit || balance\n"
   end
 
-  def convert_date(date)
+  def self.convert_date(date)
     date.strftime("%d/%m/%Y")
   end
 
-  def transaction_check(record)
+  def self.transaction_check(record)
     if record[:amount].positive?
       @statement += "|| #{two_decimals(record[:amount])} ||"
     else
@@ -29,7 +29,7 @@ class Statement
     end
   end
 
-  def two_decimals(input)
+  def self.two_decimals(input)
     '%.2f' % input
   end
 

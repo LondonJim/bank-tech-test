@@ -2,7 +2,7 @@ require_relative './statement'
 
 class Transactions
 
-  def initialize(statement = Statement.new)
+  def initialize(statement = Statement)
     @statement = statement
     @records = []
   end
