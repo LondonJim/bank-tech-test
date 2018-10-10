@@ -36,7 +36,7 @@ class Account
 
   def invalid_check(amount)
     raise "Invalid Amount Entered" if
-      amount.class != (Integer || Float) || amount.zero?
+      (amount.class != Integer && amount.class != Float) || amount.zero?
   end
 
 end
