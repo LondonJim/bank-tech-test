@@ -1,7 +1,7 @@
 module Statement
 
   def self.printer(records)
-    @statement = String.new
+    @statement = ""
     @statement << header
     records.each do |record|
       @statement += "#{convert_date(record[:date])} "

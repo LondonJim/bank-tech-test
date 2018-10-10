@@ -32,6 +32,21 @@ describe "Account" do
     expect{@new_account.withdraw(1000)}.to raise_error("Insufficient Funds")
   end
 
+  example "attempt to enter amount that is 0 when withdrawing" do
+    expect{@new_account.withdraw(0)}.to raise_error("Invalid Amount Entered")
+  end
+
+  example "attempt to enter amount that is is string when withdrawing" do
+    expect{@new_account.withdraw("Not a valid entry")}
+      .to raise_error("Invalid Amount Entered")
+  end
+
+  example "attempt to withdrawn more than balance" do
+    @new_account.deposit(500)
+
+    expect{@new_account.withdraw(1000)}.to raise_error("Insufficient Funds")
+  end
+
   example "statement is requested" do
     new_time = Time.new(2019, 01, 01, 12, 0, 0, "+00:00")
     Timecop.freeze(new_time)
