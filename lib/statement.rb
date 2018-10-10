@@ -1,21 +1,15 @@
 module Statement
 
   def self.printer(records)
-    @statement = ""
-    @statement << header
+    statement = "date || credit || debit || balance\n"
     records.each do |record|
-      @statement += "#{convert_date(record[:date])} "
-      transaction_check(record)
-      @statement += " || #{two_decimals(record[:balance])}\n"
+      statement += "#{convert_date(record[:date])} " +
+        transaction_check(record) + " || #{two_decimals(record[:balance])}\n"
     end
-    puts @statement
+    puts statement
   end
 
-  private
-
-  def self.header
-    "date || credit || debit || balance\n"
-  end
+  private_class_method
 
   def self.convert_date(date)
     date.strftime("%d/%m/%Y")
@@ -23,9 +17,9 @@ module Statement
 
   def self.transaction_check(record)
     if record[:amount].positive?
-      @statement += "|| #{two_decimals(record[:amount])} ||"
+      "|| #{two_decimals(record[:amount])} ||"
     else
-      @statement += "|| || #{two_decimals(record[:amount].abs)}"
+      "|| || #{two_decimals(record[:amount].abs)}"
     end
   end
 
