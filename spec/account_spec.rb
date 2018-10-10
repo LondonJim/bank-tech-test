@@ -36,6 +36,16 @@ describe ".Account" do
                                                date: "01/01/2019",
                                                type: :credit})
     end
+
+    it "raises error if amount deposited is 0" do
+      expect{@new_account.deposit(0)}.to raise_error("Invalid Amount Entered")
+    end
+
+    it "raises error if amount deposited is not a float or integer" do
+      expect{@new_account.deposit("not a float or integer!")}
+        .to raise_error("Invalid Amount Entered")
+    end
+
   end
 
   describe "#withdraw" do
@@ -58,6 +68,15 @@ describe ".Account" do
                                                 balance: 250,
                                                 date: "01/01/2019",
                                                 type: :debit})
+    end
+
+    it "raises error if amount withdrawn is 0" do
+      expect{@new_account.withdraw(0)}.to raise_error("Invalid Amount Entered")
+    end
+
+    it "raises error if amount withdrawn is not a float or integer" do
+      expect{@new_account.withdraw("not a float or integer!")}
+        .to raise_error("Invalid Amount Entered")
     end
   end
 

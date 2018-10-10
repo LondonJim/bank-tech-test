@@ -12,11 +12,13 @@ class Account
   end
 
   def deposit(amount)
+    invalid_check(amount)
     @balance += amount
     create_record(:credit, amount)
   end
 
   def withdraw(amount)
+    invalid_check(amount)
     raise "Insufficient Funds" if @balance <= amount
     @balance -= amount
     create_record(:debit, -amount)
@@ -30,6 +32,11 @@ class Account
 
   def create_record(type, amount)
     @transactions.record(amount, @balance, type)
+  end
+
+  def invalid_check(amount)
+    raise "Invalid Amount Entered" if
+      amount.class != (Integer || Float) || amount == 0
   end
 
 end
